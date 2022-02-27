@@ -18,7 +18,7 @@ TimerCommand = Observable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)
 
 **調査結果**
 
-`WithSubscribe()` 時に `ReactiveCommand` 本体も `Disposer` に登録すれば Timer も破棄できると思っていました、そうなっていないようです。
+`WithSubscribe()` 時に `ReactiveCommand` 本体も `Disposer` に登録される（Timer も破棄される）と思い込んでいましたが、そうではなかったです?
 
 **補足**
 
@@ -30,7 +30,7 @@ TimerCommand = Observable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1)
     .Select(x => (x & 1) == 0)
     .ToReactiveCommand()
     .WithSubscribe(() => Message.Value = $"Clicked!", _disposables.Add);
-	.AddTo(_disposables);	// ◆ここを追加
+    .AddTo(_disposables);	// ◆ここを追加
 ```
 
 ```C#
