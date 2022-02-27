@@ -1,0 +1,28 @@
+﻿<Window
+    x:Class="RpTimerDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RpTimerDemo"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="RpTimerDemo"
+    Width="400"
+    Height="200"
+    FontSize="20"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+
+    <StackPanel>
+        <TextBlock
+            FontSize="12"
+            Text="ToReactiveCommand().WithSubscribe() 使用時の ReactiveCommand 本体の破棄について。&#xD;&#xA;デモコードは MainWindowViewModel.cs の ctor に書いています。"
+            TextWrapping="Wrap" />
+        <Button Click="Button_Click" Content="Dispose VM from V" />
+        <Button Command="{Binding TimerCommand}" Content="Toggle Timer" />
+        <TextBlock Text="{Binding Counter.Value}" />
+        <TextBlock Text="{Binding Message.Value}" />
+    </StackPanel>
+</Window>
